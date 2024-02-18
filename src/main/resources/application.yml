@@ -1,0 +1,48 @@
+
+# db
+spring:
+    datasource:
+        url: jdbc:mysql://localhost:3399/classroom
+        username: root
+        password: root
+        driver-class-name: com.mysql.cj.jdbc.Driver
+    jpa:
+        hibernate:
+            ddl-auto: update
+        show-sql: true
+
+        properties:
+            hibernate:
+                highlight:
+                    use: true
+                format_sql: true
+                jdbc:
+                    time_zone: UTC
+
+    devtools:
+        livereload:
+            enabled: true
+
+    output:
+        ansi:
+            enabled: always
+
+
+logging:
+    level:
+        org:
+            springframework:
+                orm:
+                    jpa: TRACE
+                transaction: TRACE
+                security: TRACE
+            hibernate:
+                type:
+                    descriptor:
+                        sql:
+                            BasicBinder: TRACE
+                sql: DEBUG
+
+
+jwt:
+    secret: DadFufN4Oui8Bfv3ScFj6R9fyJ9hD45E6AGFsXgFsRhT4YSdSb
