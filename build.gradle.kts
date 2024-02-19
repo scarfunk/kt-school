@@ -62,6 +62,9 @@ dependencies {
 
 	// json serializer
 	implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
+
+	// swagger
+	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2")
 }
 
 tasks.withType<KotlinCompile> {

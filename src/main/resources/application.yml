@@ -1,5 +1,5 @@
 
-# db
+
 spring:
     datasource:
         url: jdbc:mysql://localhost:3399/classroom
@@ -18,6 +18,16 @@ spring:
                 format_sql: true
                 jdbc:
                     time_zone: UTC
+
+    kafka:
+      producer:
+          properties:
+              spring:
+                  json:
+                      add:
+                          type:
+                              headers: false
+
 
     devtools:
         livereload:
@@ -46,3 +56,6 @@ logging:
 
 jwt:
     secret: DadFufN4Oui8Bfv3ScFj6R9fyJ9hD45E6AGFsXgFsRhT4YSdSb
+
+server:
+    port: 8081
