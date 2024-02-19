@@ -1,6 +1,7 @@
 package com.example.ktschool.presentation
 
-import com.example.ktschool.domain.dto.AdminRequest
+import com.example.ktschool.adapter.`in`.rest.AdminController
+import com.example.ktschool.application.port.webdto.AdminRequest
 import io.kotest.matchers.shouldNotBe
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired

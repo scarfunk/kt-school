@@ -1,6 +1,6 @@
-package com.example.ktschool.infrastructure
+package com.example.ktschool.adapter.out.persistence.entity
 
-import com.example.ktschool.domain.AdminEntity
+import com.example.ktschool.adapter.out.persistence.entity.AdminEntity
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 

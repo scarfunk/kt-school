@@ -1,11 +1,9 @@
-package com.example.ktschool.domain.dto
+package com.example.ktschool.application.port.webdto
 
 class AdminResponse {
     data class AdminResponse(
-        val id: Long?,
+        val id: Long,
         val username: String,
-        val createdDate: Long,
-        val updatedDate: Long,
     )
 
     data class SchoolResponse(

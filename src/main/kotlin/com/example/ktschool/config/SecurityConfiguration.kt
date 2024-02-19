@@ -27,7 +27,7 @@ class SecurityConfiguration(
             .csrf { it.disable() }
             .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }
             .authorizeHttpRequests {
-                it.requestMatchers("/admin/register").anonymous()
+                it.requestMatchers("/admin/register").permitAll()
                     // 여기서 는 ADMIN으로 설정 하고 실제 내부적으로 비교는 ROLE_ADMIN 으로 하게 된다.
                     .requestMatchers("/admin/**").hasRole("ADMIN")
                     .anyRequest().permitAll()
@@ -36,6 +36,7 @@ class SecurityConfiguration(
                 JwtAuthenticationFilter(jwtTokenProvider, userDetailsService),
                 UsernamePasswordAuthenticationFilter::class.java
             )
+
         return http.build()
     }
 

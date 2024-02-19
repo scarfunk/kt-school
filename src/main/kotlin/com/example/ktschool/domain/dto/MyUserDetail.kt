@@ -3,7 +3,7 @@ package com.example.ktschool.domain.dto
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.userdetails.User
 
-class AdminUserDetail(
+class MyUserDetail(
     var id: Long,
     username: String,
     password: String,

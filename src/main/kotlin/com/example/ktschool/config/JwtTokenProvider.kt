@@ -1,6 +1,6 @@
 package com.example.ktschool.config
 
-import com.example.ktschool.domain.dto.AdminUserDetail
+import com.example.ktschool.domain.dto.MyUserDetail
 import io.jsonwebtoken.*
 import io.jsonwebtoken.io.Decoders
 import io.jsonwebtoken.security.Keys
@@ -43,11 +43,11 @@ class JwtTokenProvider {
             .claim("auth", authorities) // 여기 ROLE 이 들어간다.
             .claim(
                 "username",
-                (authentication.principal as AdminUserDetail).username
+                (authentication.principal as MyUserDetail).username
             ) // 유저 account 식별자
             .claim(
                 "id",
-                (authentication.principal as AdminUserDetail).id
+                (authentication.principal as MyUserDetail).id
             ) // 유저 account 식별자
             .setIssuedAt(now)
             .setExpiration(accessExpiration)
@@ -69,7 +69,7 @@ class JwtTokenProvider {
             .split(",")
             .map { SimpleGrantedAuthority(it) }
         val principal: UserDetails =
-            AdminUserDetail((id as Int).toLong(), claims.subject,  "", authorities)
+            MyUserDetail((id as Int).toLong(), claims.subject,  "", authorities)
         return UsernamePasswordAuthenticationToken(principal, "", authorities)
     }
 

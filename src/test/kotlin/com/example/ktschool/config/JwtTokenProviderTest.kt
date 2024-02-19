@@ -1,6 +1,6 @@
 
 import com.example.ktschool.config.JwtTokenProvider
-import com.example.ktschool.domain.dto.AdminUserDetail
+import com.example.ktschool.domain.dto.MyUserDetail
 import com.example.ktschool.logger
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.AnnotationSpec
@@ -27,7 +27,7 @@ class JwtTokenProviderTest(
         val password = ""
         val role = listOf(
             GrantedAuthority { "ROLE_ADMIN" })
-        val principal = AdminUserDetail(
+        val principal = MyUserDetail(
             1L, username, password, role)
         val authentication = UsernamePasswordAuthenticationToken(principal, null, role)
         logger.info { "authentication = $authentication" }

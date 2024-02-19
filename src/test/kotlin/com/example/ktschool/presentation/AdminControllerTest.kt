@@ -1,6 +1,7 @@
 package com.example.ktschool.presentation
 
-import com.example.ktschool.domain.dto.AdminRequest
+import com.example.ktschool.adapter.`in`.rest.AdminController
+import com.example.ktschool.application.port.webdto.AdminRequest
 import io.kotest.core.spec.style.AnnotationSpec
 import io.kotest.extensions.spring.SpringExtension
 import io.kotest.matchers.shouldBe

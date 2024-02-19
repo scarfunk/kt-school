@@ -1,7 +1,7 @@
 package com.example.ktschool.infrastucture
 
-import com.example.ktschool.domain.AdminEntity
-import com.example.ktschool.infrastructure.AdminRepository
+import com.example.ktschool.adapter.out.persistence.entity.AdminEntity
+import com.example.ktschool.adapter.out.persistence.entity.AdminRepository
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired

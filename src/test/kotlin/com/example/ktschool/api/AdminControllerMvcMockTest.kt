@@ -1,8 +1,7 @@
 package com.example.ktschool.api
 
-import com.example.ktschool.application.AdminService
-import com.example.ktschool.domain.AdminEntity
-import com.example.ktschool.infrastructure.AdminRepository
+import com.example.ktschool.adapter.out.persistence.entity.AdminEntity
+import com.example.ktschool.adapter.out.persistence.entity.AdminRepository
 import com.ninjasquad.springmockk.MockkBean
 import io.kotest.core.spec.style.AnnotationSpec
 import io.kotest.matchers.shouldBe
@@ -25,9 +24,8 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 @AutoConfigureMockMvc
 class AdminControllerMvcMockTest(
     @MockkBean
-    private var adminService: AdminService,
-    @MockkBean
     private var adminRepository: AdminRepository,
+
     @Autowired
     private var mockMvc: MockMvc
 ) : AnnotationSpec() {
@@ -51,8 +49,10 @@ class AdminControllerMvcMockTest(
     @Test
     fun `가입 성공`() {
         // mockk 를 사용
-        every { adminService.saveAdmin(any()) } returns AdminEntity("admin1")
-        every { adminRepository.findAllByUsername("admin1") } returns listOf(
+        every { adminRepository.save(any()) } returns AdminEntity("admin1")
+        every {
+            adminRepository.findAllByUsername(any())
+        } returns listOf(
             AdminEntity(
                 "admin1",
             )
@@ -69,9 +69,8 @@ class AdminControllerMvcMockTest(
     @Test
     fun `가입 성공 후 토큰 받은것으로 get 호출`() {
         // mockk 를 사용
-        every { adminService.saveAdmin(any()) } returns AdminEntity("admin1")
-        every { adminService.findAllAdminByUsername(any()) } returns listOf(AdminEntity("admin1"))
-        every { adminRepository.findAllByUsername("admin1") } returns listOf(
+        every { adminRepository.save(any()) } returns AdminEntity("admin1")
+        every { adminRepository.findAllByUsername(any()) } returns listOf(
             AdminEntity(
                 "admin1",
             )
@@ -86,8 +85,6 @@ class AdminControllerMvcMockTest(
         val resp = result.response.contentAsString
         val token = JSONObject(resp).getString("accessToken")
         token shouldNotBe null
-//        val mapper = ObjectMapper().readTree(resp)
-//        val token = mapper.get("accessToken").asText()
         mockMvc.get("/admin/test_admin") {
             header("Authorization", "Bearer $token")
         }.andExpect {

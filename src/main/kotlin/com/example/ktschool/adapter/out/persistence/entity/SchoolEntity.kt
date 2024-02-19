@@ -1,4 +1,4 @@
-package com.example.ktschool.domain
+package com.example.ktschool.adapter.out.persistence.entity
 
 import jakarta.persistence.*
 import org.hibernate.annotations.CreationTimestamp
@@ -16,6 +16,9 @@ class SchoolEntity(
     @OneToOne
     @JoinColumn(name = "admin_id", foreignKey = ForeignKey(name = "none"))
     var admin: AdminEntity? = null,
+
+    @OneToMany(mappedBy = "school")
+    var subscriber: List<StudentSchoolSubscriptionEntity>? = null
 ) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
