@@ -6,14 +6,12 @@ import io.jsonwebtoken.io.Decoders
 import io.jsonwebtoken.security.Keys
 import mu.KotlinLogging
 import org.springframework.beans.factory.annotation.Value
-import org.springframework.http.HttpStatus
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.stereotype.Component
-import org.springframework.web.server.ResponseStatusException
 import java.util.*
 
 private val logger = KotlinLogging.logger {}
@@ -69,7 +67,7 @@ class JwtTokenProvider {
             .split(",")
             .map { SimpleGrantedAuthority(it) }
         val principal: UserDetails =
-            MyUserDetail((id as Int).toLong(), claims.subject,  "", authorities)
+            MyUserDetail((id as Int).toLong(), claims.subject, "", authorities)
         return UsernamePasswordAuthenticationToken(principal, "", authorities)
     }
 
@@ -84,20 +82,17 @@ class JwtTokenProvider {
             logger.error { e.message }
             when (e) {
                 is SecurityException, is MalformedJwtException -> {
-                    throw ResponseStatusException(
-                        HttpStatus.UNAUTHORIZED,
+                    throw JwtException(
                         "Invalid JWT signature"
                     )
                 }  // Invalid JWT Token
                 is ExpiredJwtException -> {
-                    throw ResponseStatusException(
-                        HttpStatus.UNAUTHORIZED,
+                    throw JwtException(
                         "Expired JWT Token"
                     )
                 }    // Expired JWT Token
                 else -> {
-                    throw ResponseStatusException(
-                        HttpStatus.UNAUTHORIZED,
+                    throw JwtException(
                         "Invalid JWT token"
                     )
                 }  // else
@@ -111,4 +106,8 @@ class JwtTokenProvider {
             .build()
             .parseClaimsJws(token)
             .body
+
+    companion object {
+        const val AUTHORIZATION_HEADER: String = "Authorization"
+    }
 }

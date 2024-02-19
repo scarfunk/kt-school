@@ -36,7 +36,9 @@ class SecurityConfiguration(
                 JwtAuthenticationFilter(jwtTokenProvider, userDetailsService),
                 UsernamePasswordAuthenticationFilter::class.java
             )
-
+            .addFilterBefore(
+                JwtExceptionHandlerFilter(), JwtAuthenticationFilter::class.java
+            )
         return http.build()
     }
 

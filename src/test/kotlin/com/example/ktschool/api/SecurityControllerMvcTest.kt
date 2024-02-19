@@ -41,7 +41,7 @@ class SecurityControllerMvcTest(
     }
 
     @Test
-    fun `학생으로 학교 생성시도`() {
+    fun `학생으로 학교 생성시도 403`() {
         // 학생 생성
         val studentResp = mockMvc.post("/student/register") {
             contentType = MediaType.APPLICATION_JSON
@@ -50,7 +50,7 @@ class SecurityControllerMvcTest(
             status { isOk() }
         }.andReturn().response.contentAsString
         val studentToken = JSONObject(studentResp).getString("accessToken")
-        
+
         // 학교 생성
         val schoolReq = AdminRequest.MakeSchoolRequest("test_school", "test_location")
         val encodeString = json.encodeToString(schoolReq)
