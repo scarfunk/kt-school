@@ -2,6 +2,7 @@ package com.example.ktschool.application.service
 
 import com.example.ktschool.application.port.`in`.SubscribeSchoolUseCase
 import com.example.ktschool.application.port.out.CommandSubscribeSchoolPort
+import com.example.ktschool.application.port.out.LoadSchoolPort
 import com.example.ktschool.application.port.out.LoadStudentPort
 import com.example.ktschool.application.port.out.LoadSubscriptionPort
 import org.springframework.stereotype.Service

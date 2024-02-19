@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository
 interface StudentSchoolSubscriptionRepository :
     JpaRepository<StudentSchoolSubscriptionEntity, Long> {
     fun findByStudentIdAndSchoolId(studentId: Long, schoolId: Long): StudentSchoolSubscriptionEntity?
+    fun findBySchoolId(schoolId: Long): List<StudentSchoolSubscriptionEntity>
 }

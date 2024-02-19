@@ -4,4 +4,6 @@ import com.example.ktschool.adapter.out.persistence.entity.StudentSchoolSubscrip
 
 interface LoadSubscriptionPort {
     fun find(studentId: Long, schoolId: Long): StudentSchoolSubscriptionEntity?
+
+    fun findBySchoolId(schoolId: Long): List<StudentSchoolSubscriptionEntity>
 }

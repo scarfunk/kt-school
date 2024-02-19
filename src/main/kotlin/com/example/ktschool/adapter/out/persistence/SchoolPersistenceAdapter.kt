@@ -4,7 +4,7 @@ import com.example.ktschool.adapter.out.persistence.entity.AdminEntity
 import com.example.ktschool.adapter.out.persistence.entity.SchoolEntity
 import com.example.ktschool.adapter.out.persistence.entity.SchoolRepository
 import com.example.ktschool.application.port.out.CommandSchoolPort
-import com.example.ktschool.application.service.LoadSchoolPort
+import com.example.ktschool.application.port.out.LoadSchoolPort
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Component
 

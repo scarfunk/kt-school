@@ -28,5 +28,9 @@ class SubscribePersistenceAdapter(
         return repository.findByStudentIdAndSchoolId(studentId, schoolId)
     }
 
+    override fun findBySchoolId(schoolId: Long): List<StudentSchoolSubscriptionEntity> {
+        return repository.findBySchoolId(schoolId)
+    }
+
 
 }

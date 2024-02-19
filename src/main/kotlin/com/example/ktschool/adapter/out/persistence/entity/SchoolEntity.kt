@@ -18,7 +18,10 @@ class SchoolEntity(
     var admin: AdminEntity? = null,
 
     @OneToMany(mappedBy = "school")
-    var subscriber: List<StudentSchoolSubscriptionEntity>? = null
+    var subscriber: List<StudentSchoolSubscriptionEntity>? = null,
+
+    @OneToMany(mappedBy = "school")
+    var feeds: MutableList<SchoolFeedEntity>? = null
 ) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

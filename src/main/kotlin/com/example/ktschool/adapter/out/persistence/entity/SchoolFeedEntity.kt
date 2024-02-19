@@ -5,17 +5,17 @@ import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.UpdateTimestamp
 
 @Entity
-class StudentEntity(
-    // 초기 생성에 필요한 것은 주 생성자 로 받는다.
-    var username: String,
+class SchoolFeedEntity(
+    @Column
+    var content: String,
 
-    @OneToMany(mappedBy = "student")
-    var subscribedSchool: List<StudentSchoolSubscriptionEntity>? = null,
+    @ManyToOne
+    @JoinColumn(name = "school_id", foreignKey = ForeignKey(name = "none"))
+    var school: SchoolEntity? = null,
 
-    @OneToMany(mappedBy = "student")
-    var newsFeed: List<StudentNewsFeedEntity>? = null
+    @OneToMany(mappedBy = "feed")
+    var studentNewsFeed: List<StudentNewsFeedEntity>? = null
 ) {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0L;
